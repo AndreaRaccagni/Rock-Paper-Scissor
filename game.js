@@ -1,9 +1,20 @@
 const btn = document.querySelectorAll('.btn');
-const player = btn.forEach(e => e.addEventListener('click', (e) => {
+const resultDiv = document.querySelector('#showResult');
+const scoreDiv = document.querySelector('#score');
+let playerScore = 0;
+let cpuScore = 0;
+
+// Button selection and result of a single game
+btn.forEach(e => e.addEventListener('click', (e) => {
     const player = e.target.id;
     const computer = computerPlay()
-    const result = playRound(player, computer);
-    console.log(result);
+    const whoWin = playRound(player, computer);
+    const actualScore = trackScore (whoWin);
+    const outputText = document.createTextNode(`${whoWin}`);
+    resultDiv.replaceChildren(outputText);
+    const outputScore = document.createTextNode(`${actualScore}`);
+    scoreDiv.replaceChildren(outputScore);
+    console.log(checkForWinner(playerScore, cpuScore))
 }));
 
 // Function that returns the random cpu choice
@@ -41,32 +52,24 @@ function playRound(playerSelection, computerSelection) {
             return 'You Win! Scissors beat Paper';
         }
     }
+};
+
+// Function that tracks the score
+function trackScore (handWinner) {
+    if (handWinner.includes('Win')) playerScore += 1;
+    else if (handWinner.includes('Lose')) cpuScore += 1;
+    return `Player Score: ${playerScore} - Computer Score: ${cpuScore}`; 
+};
+
+// Function that checks for a winner
+function checkForWinner(playerScore, cpuScore) {
+    if (playerScore === 5) {
+        // buttons disappear and a play again button pops in
+        return 'You win!';
+    } else if (cpuScore === 5) {
+        // buttons disappear and a play again button pops in
+        return 'You lose!';
+    };
 }
 
-// Function to play a five round game
-// function game() {
-//     let playerScore = 0;
-//     let cpuScore = 0;
-
-//     for (let i = 0; i < 5; i++) {
-//         let player = playerPlay();
-//         console.log(`Player: ${player}`);
-//         let computer = computerPlay();
-//         console.log(`Computer: ${computer}`);
-//         let whoWon = playRound(player, computer);
-//         console.log(`Round ${i + 1}: ${whoWon}`);
-//         if (whoWon.includes('Win')) {
-//             playerScore += 1;
-//         } else if (whoWon.includes('Lose')) {
-//             cpuScore += 1;
-//         }
-//     }
-
-//     if (playerScore > cpuScore) {
-//         alert('Amazing! You win! :)');
-//     } else if (playerScore < cpuScore) {
-//         alert('Sad story...Computer wins :(');
-//     } else {
-//         alert('What a battle! It\'s a tie :|');
-//     }
-// }
+// Function to buttons disappear and a play again button pops in
