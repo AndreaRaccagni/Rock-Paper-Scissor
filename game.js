@@ -1,19 +1,22 @@
 const btn = document.querySelectorAll('.btn');
-const resultDiv = document.querySelector('#showResult');
-const scoreDiv = document.querySelector('#score');
+const resultDiv = document.querySelector('#show-result');
+const playerPoints = document.querySelector('#player-points');
+const cpuPoints = document.querySelector('#cpu-points');
+
 let playerScore = 0;
 let cpuScore = 0;
 
 // Button selection and result of a single game
 btn.forEach(e => e.addEventListener('click', (e) => {
+    console.log(e.target.id);
     const player = e.target.id;
     const computer = computerPlay()
     const whoWin = playRound(player, computer);
-    const actualScore = trackScore (whoWin);
+    const actualScore = trackScore(whoWin);
     const outputText = document.createTextNode(`${whoWin}`);
     resultDiv.replaceChildren(outputText);
-    const outputScore = document.createTextNode(`${actualScore}`);
-    scoreDiv.replaceChildren(outputScore);
+    playerPoints.replaceChildren(document.createTextNode(`${actualScore[0]}`));
+    cpuPoints.replaceChildren(document.createTextNode(`${actualScore[1]}`));
     console.log(checkForWinner(playerScore, cpuScore))
 }));
 
@@ -32,7 +35,7 @@ function computerPlay() {
 // Function that plays a single match
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return 'Whoa! This is a tie!';
+        return 'This is a tie!';
     } else if (playerSelection === 'rock') {
         if (computerSelection === 'paper') {
             return 'You Lose! Paper beats Rock';
@@ -58,17 +61,17 @@ function playRound(playerSelection, computerSelection) {
 function trackScore (handWinner) {
     if (handWinner.includes('Win')) playerScore += 1;
     else if (handWinner.includes('Lose')) cpuScore += 1;
-    return `Player Score: ${playerScore} - Computer Score: ${cpuScore}`; 
+    return [playerScore, cpuScore]; 
 };
 
 // Function that checks for a winner
 function checkForWinner(playerScore, cpuScore) {
     if (playerScore === 5) {
         // buttons disappear and a play again button pops in
-        return 'You win!';
+        return 'Awesome! You win!';
     } else if (cpuScore === 5) {
         // buttons disappear and a play again button pops in
-        return 'You lose!';
+        return 'Darn it! You lose!';
     };
 }
 

@@ -4,26 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
     <title>Rock Paper Scissors</title>
     <script src="game.js" defer></script>
 </head>
 <body>
-    <div id="buttons">
-        <button id="rock" class="btn">Rock</button>
-        <button id="paper" class="btn">Paper</button>
-        <button id="scissors" class="btn">Scissors</button>
+    <div id="top">
+        <div>
+            <h1 id="title">Bishi Bashi <span id="rock-title">Rock</span> <span id="paper-title">Paper</span> <span id="scissors-title">Scissors</span> World League</h1>
+        </div>
+        <div>
+            <img id="img" src="images/bishi bashi.png" alt="Bishi Bashi">
+        </div>
+        <div>
+            <div id="show-result">Will you make it?</div>
+        </div>
     </div>
-    <br>
-    <div>
-        <div id="showResult">-</div>
-    </div>
-    <br>
-    <div>
-        <div id="score">-</div>
-    </div>
-    <br>
-    <div>
-        <button id="resetGame">Play again!</button>
+    <div id="content">
+        <div id="game">
+            <div id="player">
+                <div class="name">You</div>
+                <div class="buttons">
+                    <button id="rock" class="btn">✊</button>
+                    <button id="paper" class="btn">🖐️</button>
+                    <button id="scissors" class="btn">✌️</button>
+                </div>
+                <div>
+                    <div class="score-text">SCORE</div>
+                    <div id="player-points">0</div>
+                </div>
+            </div>
+            <div id="cpu">
+                <div class="name">Computer</div>
+                <div class="buttons">
+                    <button id="rock" class="btn">✊</button>
+                    <button id="paper" class="btn">🖐️</button>
+                    <button id="scissors" class="btn">✌️</button>
+                </div>
+                <div>
+                    <div class="score-text">SCORE</div>
+                    <div id="cpu-points">0</div>
+                </div>   
+            </div>
+        </div>
     </div>
 </body>
+<footer id="footer">
+    <div id="copyrights">@Andrea's copyrights 2022</div>
+</footer>
 </html>
