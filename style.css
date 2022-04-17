@@ -21,7 +21,7 @@ body {
 }
 
 #paper-title {
-    color: #EFE974;
+    color: #f0e973;
 }
 
 #scissors-title {
@@ -81,6 +81,17 @@ body {
     font-size: 60px;
     padding: 8px;
     border-radius: 10%;
+    background-color: whitesmoke;
+}
+
+#player > .buttons > .btn:hover {
+    transition: all .3s ease-in-out;
+    transform: scale(1.07);
+}
+
+#cpu > .buttons > .btn {
+    pointer-events: none;
+    cursor: not-allowed;
 }
 
 .score-text {

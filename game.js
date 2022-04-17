@@ -1,4 +1,5 @@
-const btn = document.querySelectorAll('.btn');
+const playerBtn = document.querySelectorAll('#player > .buttons > .btn');
+const cpuBtn = document.querySelectorAll('#cpu > .buttons > .btn');
 const resultDiv = document.querySelector('#show-result');
 const playerPoints = document.querySelector('#player-points');
 const cpuPoints = document.querySelector('#cpu-points');
@@ -7,17 +8,17 @@ let playerScore = 0;
 let cpuScore = 0;
 
 // Button selection and result of a single game
-btn.forEach(e => e.addEventListener('click', (e) => {
-    console.log(e.target.id);
+playerBtn.forEach(e => e.addEventListener('click', (e) => {
     const player = e.target.id;
     const computer = computerPlay()
     const whoWin = playRound(player, computer);
     const actualScore = trackScore(whoWin);
     const outputText = document.createTextNode(`${whoWin}`);
     resultDiv.replaceChildren(outputText);
+    highlightButton (playerBtn, player);
+    highlightButton (cpuBtn, computer);
     playerPoints.replaceChildren(document.createTextNode(`${actualScore[0]}`));
     cpuPoints.replaceChildren(document.createTextNode(`${actualScore[1]}`));
-    console.log(checkForWinner(playerScore, cpuScore))
 }));
 
 // Function that returns the random cpu choice
@@ -75,4 +76,11 @@ function checkForWinner(playerScore, cpuScore) {
     };
 }
 
-// Function to buttons disappear and a play again button pops in
+
+// Function that highlight the selections
+function highlightButton (btnNodeList, selection) {
+    btnNodeList.forEach(element => element.style.background = "whitesmoke")
+    for (let i = 0; i < btnNodeList.length; i++) {
+        if (btnNodeList[i].id === selection) btnNodeList[i].style.background = "#f0e973"
+    }
+}
